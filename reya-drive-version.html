@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REYA — Slow Fashion, Made in Indonesia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-beige: #e8dece;
+    --terracotta: #b5735a;
+    --clay: #8c5e4a;
+    --earth: #6b4e3d;
+    --dark-earth: #2c1f18;
+    --sage: #8a9e8c;
+    --text: #2c1f18;
+    --text-light: #7a6858;
+    --border: rgba(44,31,24,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0.8rem 3rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo-img {
+    height: 56px; width: auto;
+    display: block;
+    transition: opacity 0.3s;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo-img:hover { opacity: 0.75; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(181,115,90,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 7vw, 7rem);
+    font-weight: 300; line-height: 0.92;
+    color: var(--dark-earth);
+    margin-bottom: 2rem;
+  }
+  .hero-title em { font-style: italic; color: var(--terracotta); }
+  .hero-sub {
+    font-size: 0.8rem; font-weight: 200; letter-spacing: 0.12em;
+    color: var(--text-light); line-height: 1.9;
+    max-width: 360px; margin-bottom: 3rem;
+  }
+  .hero-values {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .hero-value {
+    font-size: 0.65rem; font-weight: 300; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-light);
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-size: 0.72rem; font-weight: 300; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--cream);
+    background: var(--dark-earth);
+    padding: 1rem 2.5rem; text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    width: fit-content;
+  }
+  .hero-cta:hover { background: var(--terracotta); transform: translateY(-1px); }
+  .hero-right {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    gap: 0.5rem; padding: 5.5rem 4rem 4rem 0.5rem;
+  }
+  .hero-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .hero-img:hover { transform: scale(1.02); }
+  .hero-img-1 { grid-column: 1; grid-row: 1; }
+  .hero-img-2 { grid-column: 2; grid-row: 1; }
+  .hero-img-3 { grid-column: 1; grid-row: 2; }
+  .hero-img-4 { grid-column: 2; grid-row: 2; }
+  .hero-right > div { overflow: hidden; }
+
+  /* ── MANIFESTO ── */
+  .manifesto {
+    padding: 7rem 6rem;
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 6rem; align-items: start;
+    border-top: 1px solid var(--border);
+  }
+  .manifesto-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--terracotta); padding-top: 0.5rem;
+  }
+  .manifesto-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 300; line-height: 1.6;
+    color: var(--dark-earth);
+  }
+  .manifesto-text em { font-style: italic; color: var(--terracotta); }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    padding: 5rem 6rem 2rem;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300; color: var(--dark-earth);
+  }
+  .section-sub {
+    font-size: 0.7rem; font-weight: 200; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-light);
+    margin-top: 0.4rem;
+  }
+  .section-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300; color: var(--border);
+    line-height: 1;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    padding: 2rem 4rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.5rem;
+  }
+  .product-card {
+    cursor: pointer; position: relative;
+    background: white;
+    transition: transform 0.4s ease;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-card:hover .product-img { transform: scale(1.04); }
+  .product-img-wrap {
+    aspect-ratio: 3/4; overflow: hidden;
+    background: var(--warm-beige);
+    position: relative;
+  }
+  .product-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .product-fabric-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    font-size: 0.58rem; font-weight: 400; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--cream);
+    background: rgba(44,31,24,0.75);
+    padding: 0.3rem 0.7rem;
+    backdrop-filter: blur(4px);
+  }
+  .special-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 0.58rem; font-weight: 400; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cream);
+    background: var(--terracotta);
+    padding: 0.3rem 0.7rem;
+  }
+  .product-info {
+    padding: 1.2rem 1.4rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--dark-earth);
+    letter-spacing: 0.05em;
+  }
+  .product-desc-short {
+    font-size: 0.65rem; font-weight: 200; color: var(--text-light);
+    margin-top: 0.2rem; letter-spacing: 0.05em;
+  }
+  .product-price {
+    font-size: 0.72rem; font-weight: 300; color: var(--terracotta);
+    white-space: nowrap; margin-left: 0.5rem; letter-spacing: 0.05em;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(20,12,8,0.85);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+  }
+  .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; padding: 2rem; }
+  .modal {
+    background: var(--cream);
+    max-width: 1100px; width: 100%;
+    margin: auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative;
+    animation: modalIn 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.4rem; color: var(--dark-earth); line-height: 1;
+    width: 2.5rem; height: 2.5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(245,240,232,0.9);
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--warm-beige); }
+
+  /* image gallery */
+  .modal-gallery { position: relative; }
+  .modal-main-img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+    background: var(--warm-beige);
+  }
+  .modal-thumbs {
+    display: flex; gap: 0.3rem; padding: 0.3rem;
+    background: var(--warm-beige);
+    overflow-x: auto;
+  }
+  .modal-thumb {
+    width: 60px; height: 75px; flex-shrink: 0;
+    object-fit: cover; cursor: pointer;
+    opacity: 0.6; transition: opacity 0.2s;
+    border: 2px solid transparent;
+  }
+  .modal-thumb.active { opacity: 1; border-color: var(--terracotta); }
+
+  /* modal content */
+  .modal-content { padding: 3rem 3rem 2rem; overflow-y: auto; max-height: 90vh; }
+  .modal-fabric-tag {
+    font-size: 0.6rem; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 0.7rem;
+  }
+  .modal-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--dark-earth);
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .modal-price {
+    font-size: 1rem; font-weight: 300; color: var(--terracotta);
+    margin-bottom: 1.5rem; letter-spacing: 0.05em;
+  }
+  .modal-desc {
+    font-size: 0.92rem; font-weight: 200; color: var(--text-light);
+    line-height: 2; margin-bottom: 2rem;
+    border-top: 1px solid var(--border); padding-top: 1.5rem;
+  }
+
+  /* sizes */
+  .modal-section-title {
+    font-size: 0.62rem; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--dark-earth);
+    margin-bottom: 0.8rem;
+  }
+  .size-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 2rem;
+    font-size: 0.72rem; font-weight: 200;
+  }
+  .size-table th {
+    text-align: left; padding: 0.4rem 0.6rem;
+    background: var(--warm-beige);
+    font-weight: 400; letter-spacing: 0.1em; font-size: 0.62rem;
+    text-transform: uppercase; color: var(--text-light);
+  }
+  .size-table td {
+    padding: 0.4rem 0.6rem; color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* care */
+  .care-list {
+    list-style: none; margin-bottom: 2rem;
+  }
+  .care-list li {
+    font-size: 0.72rem; font-weight: 200; color: var(--text-light);
+    padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .care-list li::before {
+    content: '—'; color: var(--terracotta); font-size: 0.6rem; flex-shrink: 0;
+  }
+
+  /* order CTA */
+  .order-cta {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.2rem 0; border-top: 1px solid var(--border);
+  }
+  .order-btn {
+    flex: 1; padding: 1rem 1.5rem;
+    background: var(--dark-earth); color: var(--cream);
+    border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; font-weight: 300; letter-spacing: 0.25em;
+    text-transform: uppercase; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.6rem; transition: background 0.3s;
+  }
+  .order-btn:hover { background: var(--terracotta); }
+  .order-note {
+    font-size: 0.62rem; font-weight: 200; color: var(--text-light);
+    letter-spacing: 0.08em; line-height: 1.6;
+  }
+
+  /* ── SPECIAL EDITION BANNER ── */
+  .special-banner {
+    margin: 0 4rem 2rem;
+    background: var(--dark-earth);
+    padding: 3rem 4rem;
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 3rem; align-items: center;
+  }
+  .special-banner-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--cream);
+    line-height: 1.1;
+  }
+  .special-banner-title em { font-style: italic; color: var(--terracotta); }
+  .special-banner-text {
+    font-size: 0.75rem; font-weight: 200; color: rgba(245,240,232,0.7);
+    line-height: 1.9; letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 5rem 6rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--dark-earth);
+    margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-size: 0.92rem; font-weight: 200; color: var(--text-light);
+    line-height: 2; max-width: 600px;
+  }
+  .footer-col-title {
+    font-size: 0.62rem; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--dark-earth);
+    margin-bottom: 1.2rem;
+  }
+  .footer-links-row {
+    display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .footer-link {
+    font-size: 0.72rem; font-weight: 200;
+    color: var(--text-light); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--terracotta); }
+  .footer-divider {
+    width: 40px; height: 1px; background: var(--border);
+  }
+  .footer-bottom {
+    padding: 1.5rem 6rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: center; align-items: center; gap: 2rem;
+  }
+  .footer-copy {
+    font-size: 0.62rem; font-weight: 200; color: var(--text-light);
+    letter-spacing: 0.1em;
+  }
+
+  /* Category filter tabs */
+  .category-tabs {
+    padding: 0 4rem 1.5rem;
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .cat-tab {
+    font-size: 0.65rem; font-weight: 300; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-light);
+    padding: 0.5rem 1.2rem;
+    background: none; border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'Jost', sans-serif;
+  }
+  .cat-tab:hover, .cat-tab.active {
+    background: var(--dark-earth); color: var(--cream);
+    border-color: var(--dark-earth);
+  }
+
+  /* ── COLOR VARIANTS ── */
+  .modal-colors {
+    display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+  }
+  .color-dot {
+    width: 1.4rem; height: 1.4rem; border-radius: 50%;
+    border: 2px solid var(--border); cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .color-dot:hover { border-color: var(--terracotta); }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 6rem 2rem 4rem; }
+    .manifesto { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 2rem; }
+    .section-header { padding: 4rem 2rem 2rem; }
+    .product-grid { padding: 2rem 1rem 4rem; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.4rem; }
+    .category-tabs { padding: 0 1rem 1.5rem; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-content { padding: 2rem 1.5rem; max-height: none; }
+    footer { padding: 4rem 2rem 2rem; }
+    .footer-bottom { padding: 1.5rem 2rem; }
+    .special-banner { margin: 0 1rem 2rem; padding: 2rem; grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#">
+    <img src="data:image/png;base64,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" alt="REYA" class="nav-logo-img">
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="lookbook">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Made in Indonesia · Est. Jakarta</p>
+    <h1 class="hero-title">Wear<br>the <em>Earth's</em><br>Colors</h1>
+    <p class="hero-sub">
+      REYA is slow fashion rooted in nature — each piece hand-dyed with botanicals, crafted ethically, designed to last beyond seasons.
+    </p>
+    <div class="hero-values">
+      <span class="hero-value">Slow Fashion</span>
+      <span class="hero-value">Natural Dye</span>
+      <span class="hero-value">Ethical</span>
+    </div>
+    <a href="https://instagram.com/reya.byra" target="_blank" class="hero-cta">
+      Order via Instagram DM →
+    </a>
+  </div>
+  <div class="hero-right">
+    <div><img class="hero-img hero-img-1" src="https://drive.google.com/uc?export=view&id=10IEYFxQDRImpWJ3iicvNmOfq4cznuKDg" alt="REYA collection"></div>
+    <div><img class="hero-img hero-img-2" src="https://drive.google.com/uc?export=view&id=120WUwhNCQJyEIRTXGcMeHzpxlZsD_qLM" alt="REYA natural dye"></div>
+    <div><img class="hero-img hero-img-3" src="https://drive.google.com/uc?export=view&id=1B5gnhfUqZDL1WujvOja1KSnLvfoUjEQK" alt="REYA pieces"></div>
+    <div><img class="hero-img hero-img-4" src="https://drive.google.com/uc?export=view&id=1MIIE3EgEKeKuznIjnqrt-e9c3wDoV_cV" alt="REYA craftsmanship"></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto reveal">
+  <p class="manifesto-label">Our Philosophy</p>
+  <p class="manifesto-text">
+    We believe clothing should <em>tell a story</em> — of hands that shaped it, earth that coloured it, and time taken to make it well. Every REYA piece carries the beautiful imperfection of nature.
+  </p>
+</section>
+
+<!-- HEMP COLLECTION -->
+<section id="hemp">
+  <div class="section-header reveal">
+    <div>
+      <h2 class="section-title">Hemp</h2>
+      <p class="section-sub">Breathable · Durable · Naturally textured</p>
+    </div>
+    <span class="section-count">01</span>
+  </div>
+  <div class="category-tabs" id="tabs-hemp"></div>
+  <div class="product-grid" id="grid-hemp"></div>
+</section>
+
+<!-- TENCEL COLLECTION -->
+<section id="tencel">
+  <div class="section-header reveal">
+    <div>
+      <h2 class="section-title">Tencel</h2>
+      <p class="section-sub">Silky · Sustainable · Naturally cool</p>
+    </div>
+    <span class="section-count">02</span>
+  </div>
+  <div class="product-grid" id="grid-tencel"></div>
+</section>
+
+<!-- COTTON COLLECTION -->
+<section id="cotton">
+  <div class="section-header reveal">
+    <div>
+      <h2 class="section-title">Cotton</h2>
+      <p class="section-sub">Soft · Versatile · Naturally dyed</p>
+    </div>
+    <span class="section-count">03</span>
+  </div>
+  <div class="product-grid" id="grid-cotton"></div>
+</section>
+
+<!-- SATIN LYOCELL COLLECTION -->
+<section id="satin">
+  <div class="section-header reveal">
+    <div>
+      <h2 class="section-title">Satin Lyocell</h2>
+      <p class="section-sub">Lustrous · Draping · Naturally elegant</p>
+    </div>
+    <span class="section-count">04</span>
+  </div>
+  <div class="product-grid" id="grid-satin"></div>
+</section>
+
+<!-- SPECIAL EDITION -->
+<section id="special">
+  <div class="section-header reveal">
+    <div>
+      <h2 class="section-title">Special Edition</h2>
+      <p class="section-sub">Limited pieces · Open for custom orders</p>
+    </div>
+    <span class="section-count">05</span>
+  </div>
+  <div class="special-banner reveal">
+    <div class="special-banner-title">Only a few <em>rare</em> pieces</div>
+    <p class="special-banner-text">Special Edition garments are created in very limited quantities — each one unique. We also open custom orders for these designs. DM us on Instagram to inquire about availability or request a custom piece.</p>
+  </div>
+  <div class="product-grid" id="grid-special"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">REYA</div>
+  <div class="footer-divider"></div>
+  <p class="footer-tagline">REYA was born from a love of making things well — and a quiet frustration with fashion that moves too fast, wastes too much, and fits too few. We dye with nature, sew with care, and design without size limits. We believe in finding joy in what you already have, wearing pieces that age with you, and choosing craft over quantity. Because the best wardrobe isn't the fullest one — it's the most loved.</p>
+  <div class="footer-divider"></div>
+  <div class="footer-links-row">
+    <a href="https://instagram.com/reya.byra" target="_blank" class="footer-link">@Reya.byra on Instagram</a>
+    <span class="footer-copy" style="color:var(--border)">|</span>
+    <span class="footer-link" style="cursor:default">Orders via IG DM only</span>
+    <span class="footer-copy" style="color:var(--border)">|</span>
+    <span class="footer-link" style="cursor:default">Made in Indonesia 🇮🇩</span>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p class="footer-copy">© 2025 REYA by Ra — All rights reserved</p>
+  <span class="footer-copy" style="color:var(--border)">·</span>
+  <p class="footer-copy">Slow fashion · Natural dye · Ethical</p>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-gallery">
+      <img id="modalMainImg" class="modal-main-img" src="" alt="">
+      <div class="modal-thumbs" id="modalThumbs"></div>
+    </div>
+    <div class="modal-content">
+      <p class="modal-fabric-tag" id="modalFabric"></p>
+      <h2 class="modal-name" id="modalName"></h2>
+      <p class="modal-price" id="modalPrice"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+
+      <div id="modalSizeBlock">
+        <p class="modal-section-title">Measurements (cm)</p>
+        <table class="size-table" id="modalSizeTable"></table>
+      </div>
+
+      <div style="margin-top:1.5rem">
+        <p class="modal-section-title">Care Instructions</p>
+        <ul class="care-list" id="modalCare"></ul>
+      </div>
+
+      <div class="order-cta">
+        <a href="https://instagram.com/reya.byra" target="_blank" class="order-btn">
+          DM to Order on Instagram →
+        </a>
+        <p class="order-note">No purchase on website.<br>Orders received at IG DM @Reya.byra</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const careHempBase = [
+  'Hand wash or gentle machine wash',
+  'Caution: first few washes may have color bleeding',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight to protect color',
+  'Iron on Medium-High / Cotton-Wool setting'
+];
+const careTencel = [
+  'Hand wash or gentle machine wash',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight',
+  'Iron on Medium setting'
+];
+const careTencelDye = [
+  'Hand wash or gentle machine wash',
+  'Caution: first few washes may have color bleeding',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight to protect color',
+  'Iron on Medium setting'
+];
+const careCotton = [
+  'Hand wash or gentle machine wash',
+  'Caution: first few washes may have color bleeding',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight',
+  'Iron on Medium-High / Cotton setting'
+];
+const careSatin = [
+  'Hand wash or gentle machine wash',
+  'Caution: first few washes may have color bleeding',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight',
+  'Iron on Medium / Silk setting'
+];
+const careSpecial = [
+  'Hand wash or gentle machine wash',
+  'Caution: first few washes may have color bleeding',
+  'Use gentle detergent — batik/Lerak soap recommended',
+  'Do not use bleach',
+  'Dry away from direct sunlight',
+  'Iron on Medium-High / Linen setting'
+];
+
+const products = {
+  hemp: [
+    {
+      id:'cielo', name:'CIELO', price:'Rp 737.000',
+      fabric:'Hemp', special:false,
+      desc:'Long wide sleeve shirt with no button open collar detail. Indigo Blue ombre. Each piece carries a unique natural dye gradient — no two are exactly alike. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1A8rqUCl-kfMXl_FVG5o8dmV-OlX3O43s','https://drive.google.com/uc?export=view&id=123i--IWGXAp7Ebldei7hP9UN1PlUCbRp','https://drive.google.com/uc?export=view&id=16aaQU4BNCYtNE0r_NoYWLYfUV6uyuG2S','https://drive.google.com/uc?export=view&id=1ROkp9QM3QLmkM7HYA3DS9fPJYDf7rzuB'],
+      sizes:[['Front','77'],['CF','54.5'],['Back','80'],['Neckline','47'],['Chest','108'],['Hemline','105'],['Sleeve Length','52'],['Sleeve Hemline','48']],
+      care: careHempBase
+    },
+    {
+      id:'tierra', name:'TIERRA', price:'Rp 585.000',
+      fabric:'Hemp', special:false,
+      desc:'Polo style shirt with no button. Brown ombre color. Earthy and warm, this natural dye piece transitions beautifully from deep chocolate to a lighter blush. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1J_4XcFbECOr8dCX1eZj7QUsq7YRg0IrY','https://drive.google.com/uc?export=view&id=1q4JFz27lUGGYB9sL9Wh6qm5BemPUID_W','https://drive.google.com/uc?export=view&id=18kqfBbNuKGPqthGxZ1VAYej3u49mRB6u','https://drive.google.com/uc?export=view&id=1sA5Tes30dBm8OmvwfDAo0ZsahWxuDMdp'],
+      sizes:[['Front','66'],['CF','47.5'],['Back','68'],['Neckline','59'],['Chest','116'],['Hemline','108'],['Sleeve Length','29.5'],['Sleeve Hemline','40']],
+      care: careHempBase
+    },
+    {
+      id:'lurik', name:'LURIK', price:'Rp 533.000',
+      fabric:'Hemp', special:false,
+      desc:'V-neck top with slit detail on the back. Black stripes pattern. A refined play on traditional Indonesian lurik textile translated into modern, relaxed silhouette. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1n98v2qX7HEPj-C9UPo9aImJSrApWdS9B','https://drive.google.com/uc?export=view&id=1lPkvtCpgeef-43QK8STNyUnlz9qNY0sy','https://drive.google.com/uc?export=view&id=1QJikI0f7NirO4vHxDkW_OoqQMIU8kuKa'],
+      sizes:[['Front','68.5'],['CF','56'],['Back','67'],['Slit CB','22.5'],['Neckline','56'],['Chest','110'],['Hemline','56'],['Sleeve Length','23'],['Sleeve Hemline','36']],
+      care: careHempBase
+    },
+    {
+      id:'libby', name:'LIBBY', price:'Rp 482.000',
+      fabric:'Hemp', special:false,
+      desc:'Long pants with stretchable waist. Available in Muted Brown, Cream Coffee Brown, Fresh Pink, Light Pink, and Black. A wardrobe essential in breathable hemp. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1Rf1t6KzHLXI0Sqz0llLFLQlAqD6y-Faq','https://drive.google.com/uc?export=view&id=1xUSASniTooX4q4Ui5JtJZZJ7i7QqMQLW','https://drive.google.com/uc?export=view&id=1RTgEbAtlKj8uE0PD8NjunTBn5o-l1t-F','https://drive.google.com/uc?export=view&id=1CerFG8A8E1c-qUt3qN88jvSaoyJgg6t4','https://drive.google.com/uc?export=view&id=14InHWegVHZXyZwyykuVXvi18rW_DQDtr'],
+      sizes:[['Waist','70.5'],['Length','99'],['Hemline','50']],
+      care: careHempBase
+    },
+  ],
+  tencel: [
+    {
+      id:'hvit', name:'HVIT', price:'Rp 279.000',
+      fabric:'Tencel', special:false,
+      desc:'V neck top with raglan sleeve. Natural White. The lightest, most ethereal piece in the collection — airy Tencel in its purest natural state. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1DCp3yb3smbcK-R2AXeXPf7A3xNesN3Id','https://drive.google.com/uc?export=view&id=1vVlnZIBy-4iy1DrExE9Jq6uNqEHiXUYP','https://drive.google.com/uc?export=view&id=1UG_Z2X4Y3nNVPWU17Sy8ejYu9tWb1biT','https://drive.google.com/uc?export=view&id=1Cm0exWvQLOYX7_IYVTuGXsw9iArMBgeP'],
+      sizes:[['Front','67.5'],['CF','44'],['Back','66.5'],['Neckline','43'],['Chest','112'],['Hemline','106'],['Sleeve Length','38'],['Sleeve Hemline','37']],
+      care: careTencel
+    },
+    {
+      id:'hygge', name:'HYGGE', price:'Rp 240.000',
+      fabric:'Tencel', special:false,
+      desc:'Y-neck top with semi-long sleeve. Natural White. Named after the Danish feeling of coziness — this generous, flowing top embodies ease and comfort. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1XMAQ8avAZsikk5tB6krYFLhDJ4SRstmH','https://drive.google.com/uc?export=view&id=1TFEFA9xEh5_ZZqlWtsmWDVxoEimz-Tgg','https://drive.google.com/uc?export=view&id=1XU6l7MJk64hEYWB1fiJAoUmH9h-IE4js','https://drive.google.com/uc?export=view&id=1VQ5NKSbdf4qXl35BBgWEqLUD4qit7tRl','https://drive.google.com/uc?export=view&id=1Yov2ULj_FeqkS6qv90iThTwFfAZD4k3d'],
+      sizes:[['Front','67'],['CF','50'],['Back','73.5'],['Neckline','64'],['Chest','120'],['Hemline','126'],['Sleeve Length','51.5'],['Sleeve Hemline','45']],
+      care: careTencel
+    },
+    {
+      id:'ophelia', name:'OPHELIA', price:'Rp 520.000',
+      fabric:'Tencel', special:false,
+      desc:'Polo style shirt with no button and oversized gather sleeve. Orange abstract pattern. A dramatic, expressive silhouette with naturally dyed abstract motifs. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1ie8pMnkbtUTqY3Lswb05Uui1sGCxXbf1','https://drive.google.com/uc?export=view&id=1ck2mOEoQYJ28K_CnY_oS_PptlNm9JTSK','https://drive.google.com/uc?export=view&id=1OwIZvqCG8Rl2Tekj9teDox1UI2u2OnJD','https://drive.google.com/uc?export=view&id=1BZQDgDLl4gJPriooIM6eBimLGIZ2tXcd','https://drive.google.com/uc?export=view&id=1Md3P2EJ9JpjYjsPh5Vdi7Z6iysC0ABmP'],
+      sizes:[['Front','64.5'],['CF','51'],['Back','66'],['Neckline','56.5'],['Chest','135'],['Hemline','124.5'],['Sleeve Length','83'],['Sleeve Hemline','47.5']],
+      care: careTencelDye
+    },
+  ],
+  cotton: [
+    {
+      id:'nalu', name:'NALU', price:'Rp 463.000',
+      fabric:'Cotton', special:false,
+      desc:'Boxy top with plunge detail on the back. Indigo blue pattern. Bold circular shibori dye work creates a striking, bold wave-like pattern on natural cotton. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1M5tCE991JJ1QrisR3q7-VGGCflcxIxrc','https://drive.google.com/uc?export=view&id=1DHXdqYjTH8WObgY53Ofb2xFphrYirjf7','https://drive.google.com/uc?export=view&id=1XPTDfqBVoOaeM1fMDcWISRIlo4aZXJPV'],
+      sizes:[['Front','53.7'],['Back','45.2'],['Sleeve Length','24.2'],['Sleeve Hemline','39.8'],['Shoulder','21'],['Chest','143.5'],['Hemline','134.6']],
+      care: careCotton
+    },
+    {
+      id:'mori', name:'MORI', price:'Rp 424.000',
+      fabric:'Cotton', special:false,
+      desc:'Sleeveless oversized top. Green-Blue splatter pattern. Inspired by forest light filtering through leaves — each piece is uniquely splattered by hand. All size.',
+      images:['https://drive.google.com/uc?export=view&id=19INhzJ6dTrORB6Gn5YKauYtkREhlaGei','https://drive.google.com/uc?export=view&id=1SV9xdPNbm4wIpTQSXrf1JNcj0MhuJDEz','https://drive.google.com/uc?export=view&id=1tpWlSKoYRJLdLwInEaDadWUcCqcHP-DY','https://drive.google.com/uc?export=view&id=1PzoXWF4aA_sQ-VvIMf_C-Q7kFU6zwgn0'],
+      sizes:[['Front','69.3'],['CF','49.7'],['CB','66.8'],['Shoulder','35.5'],['Armhole','61.7'],['Neckline','79.5'],['Chest','172.8'],['Hemline','173.4']],
+      care: careCotton
+    },
+    {
+      id:'pomelo', name:'POMELO', price:'Rp 460.000',
+      fabric:'Cotton', special:false,
+      desc:'Boat neck top with gather detail on the back hemline. Pink. A soft, feminine silhouette with an adjustable back hemline gather for personalized fit. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1GJ46ga9C2fcHLHcR8luQaR3iaJsATxgA','https://drive.google.com/uc?export=view&id=1mNYaP_HmcRht2E0hkvZ0oUmRCV_tHbvX','https://drive.google.com/uc?export=view&id=1t4B6fOo1ihzcy6Nj-4lAEit5I7G6UKRu','https://drive.google.com/uc?export=view&id=1J3zgOKHnKNsh8E0dYUp_F-ZSfDhbHodv'],
+      sizes:[['CF','49'],['CB','57.5'],['Shoulder','12.5'],['Sleeve','25'],['Neckline','77'],['Chest','133'],['Hemline','116.5 (Adjustable back)']],
+      care: careCotton
+    },
+    {
+      id:'helios', name:'HELIOS', price:'Rp 423.000',
+      fabric:'Cotton', special:false,
+      desc:'Oversized drop shoulder top with hand embroidery pocket. Each garment has a different embroidery pattern — making every piece truly one of a kind. Yellow and Orange. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1Xq2invDAEsYfQ1uo1CiCpxawxuzAVhx7','https://drive.google.com/uc?export=view&id=1wm-CKPP1MHgt7FKDpZfK6SgaZ5skk-9p','https://drive.google.com/uc?export=view&id=1pVEWtDMnbYbiXY5W8me0FDpqrVkPHh5u','https://drive.google.com/uc?export=view&id=1X-RNws_qRkEQpkzRk6xLI7Or4N5tn7Lo'],
+      sizes:[['Front','64'],['Back','67'],['Shoulder','30'],['Armhole','56.5'],['Back Yoke','67.5'],['Neckline','65.5'],['Chest','133'],['Hemline','135']],
+      care: careCotton
+    },
+    {
+      id:'meraki', name:'MERAKI', price:'Rp 620.000',
+      fabric:'Cotton', special:false,
+      desc:'Adjustable long pants using snap button. The word "meraki" means putting a piece of yourself into what you do — fitting for these carefully crafted adjustable pants. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1VsFsF18Ud0QWTyvLddWwnMSTJfCy9ck0','https://drive.google.com/uc?export=view&id=1VW5S86XJ3PJzGV7428hKv-95f3kIDWA-','https://drive.google.com/uc?export=view&id=1mVGJpw8cUYrlJALHqCWnH06prt0ymZBy','https://drive.google.com/uc?export=view&id=1pIipDSc0xLZSWrDlDblvlONMFDGCkWrO'],
+      sizes:[['Hemline','57'],['Length','92.7'],['Strap','202.3'],['Waist (Original)','139']],
+      care: careCotton
+    },
+    {
+      id:'emily', name:'EMILY', price:'Rp 565.000',
+      fabric:'Cotton', special:false,
+      desc:'Short sleeve kimono top. Black-Grey pattern. A bold, graphic natural dye pattern on generous kimono sleeves — effortlessly dramatic. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1V2JdSruyzfrYjzIJ5GmkS3RQ5bcbn-J5','https://drive.google.com/uc?export=view&id=1zNpOELyxPlqVAm1grPqSSThnag9klhA9','https://drive.google.com/uc?export=view&id=1FcaaPvAh50IYortCH1vqzsWjuEXfRWCL','https://drive.google.com/uc?export=view&id=1FCzrS_EfWwH9perFNKEFPEdXARrOw4vo'],
+      sizes:[['Front','55.5'],['Back','63.5'],['Shoulder','24.5'],['Sleeve Length','18.5'],['Sleeve Hemline','42'],['Neckline','57'],['Chest','145'],['Hemline','145']],
+      care: careCotton
+    },
+  ],
+  satin: [
+    {
+      id:'venus', name:'VENUS', price:'Rp 463.000',
+      fabric:'Satin Lyocell', special:false,
+      desc:'Reversible top with tie knot details. Pink. Wear it front or back — the natural dye pattern looks beautiful from every angle. A study in versatility. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1OXw3XM_4iIYbF4TVwm2tgrmBhuVFbgFV','https://drive.google.com/uc?export=view&id=132dBAF5w8WJKrK6MiRUJ8aJi604I_9wW','https://drive.google.com/uc?export=view&id=1sQn6jOwkRC_D1McjCkJF8C6lkqFpkJhg','https://drive.google.com/uc?export=view&id=1Z-Jdu53yY44Tt19-8zTwwPMpArDAZEzh','https://drive.google.com/uc?export=view&id=1aIw19K5ojaJRyc4i5JKF3sBImsIWiAOJ'],
+      sizes:[['CF','61'],['CB','67.5'],['Shoulder','13.5'],['Sleeve','24'],['Neckline','71'],['Chest','118'],['Hemline','132.5']],
+      care: careSatin
+    },
+    {
+      id:'kamen', name:'KAMEN', price:'Rp 462.000',
+      fabric:'Satin Lyocell', special:false,
+      desc:'Tie knot long pants with buttoned leg details. Pink and Yellow. Available in 2 lengths: Grande (full length) & Petite (shorter). Adjustable and elegant. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1lHfDOZ7OEng6P7kPlFbhEVWXh7Mood4S','https://drive.google.com/uc?export=view&id=1f0zvXDnDxNOoeaE3-TLfbig8SnRZ7ab9','https://drive.google.com/uc?export=view&id=10OmmjVJwO7i9KOd2VKkNBOEQObruktlQ','https://drive.google.com/uc?export=view&id=1py_PJ0TCAXIGawFdx4dclF_IkK9l6VUE'],
+      sizes:[['—Petite—',''],['Length','89.5'],['Waist','133'],['Hemline I','32'],['Hemline II','27.5'],['Strap','89.5'],['—Grande—',''],['Length','107.2'],['Waist','133'],['Hemline I','52.5'],['Hemline II','26.5'],['Strap','89.5']],
+      care: careSatin
+    },
+    {
+      id:'grund', name:'GRUND', price:'Rp 425.000',
+      fabric:'Satin Lyocell', special:false,
+      desc:'Open collar shirt with slit sleeve details. Pink and Yellow. The slit sleeves catch the light beautifully in this lustrous satin lyocell — a piece that moves with you. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1g8Lp5GmENYJ-JrX4P6WJ59vgs9eh7O4D','https://drive.google.com/uc?export=view&id=133QUUpUnkAFLKKc4My9U0NHQiNocwI2W','https://drive.google.com/uc?export=view&id=1bpmpJDsAa57opqms-EkxiJDIom4mQjYO','https://drive.google.com/uc?export=view&id=1kr56nW4PTL5tfPFvNDYgMzHIS6II9EZc','https://drive.google.com/uc?export=view&id=15Q911HOcQGgdqGUy4u9iaVJ38Kzw4yR7'],
+      sizes:[['CF','57.5'],['CB','75.5'],['Shoulder','20'],['Sleeve','61'],['Sleeve Hemline','22'],['Neckline','35.5'],['Chest','141'],['Hemline','146']],
+      care: careSatin
+    },
+    {
+      id:'sol', name:'SOL', price:'Rp 415.000',
+      fabric:'Satin Lyocell', special:false,
+      desc:'Mandarin collar shirt with short sleeve. Yellow and Orange. Sun-inspired natural dyes bring warmth and joy to this structured mandarin collar silhouette. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1RVm39gl9_ggApNuCf02OAMyl9rsUq-KK','https://drive.google.com/uc?export=view&id=1koBEszumOjWI7vaAbCBFAnBlkL4RaiJl'],
+      sizes:[['Front','67.5'],['Back','77'],['Shoulder','15.5'],['Placket','23.5'],['Sleeve Length','31'],['Sleeve Hemline','38.5'],['Neckline','58'],['Chest','140'],['Hemline','141.5']],
+      care: careSatin
+    },
+    {
+      id:'polar', name:'POLAR', price:'Rp 464.000',
+      fabric:'Satin Lyocell', special:true,
+      desc:'Boxy shape henley style shirt with spread collar. Black grey abstract natural dye — each piece dramatically different, like a stormy sky rendered in fabric. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1pBN0SgvDOaaIGQjP9IUpeUfreOH8fA1Q','https://drive.google.com/uc?export=view&id=1aadoTYKZ7P2LlGYmHYNHT1Yizfbhakp7','https://drive.google.com/uc?export=view&id=1QZFfQw3wKKUmGYoZdwH6IWHmsZPGZLt3'],
+      sizes:[['Front','48.5'],['Back','62.5'],['Shoulder','16.5'],['Sleeve Length','40.5'],['Sleeve Hemline','30'],['Neckline','61'],['Chest','136'],['Hemline','139.5']],
+      care: careSatin
+    },
+  ],
+  special: [
+    {
+      id:'freyja', name:'FREYJA', price:'Rp 455.000',
+      fabric:'Cotton Papyrus', special:true,
+      desc:'Short sleeve shirt with gather details on the shirt placket. Black white. Cotton Papyrus fabric — thin, papery, and full of character. Open for custom in your preferred natural dye color. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1LJOa5U36-zAEmjyYo96kjrrtelRdMgzH','https://drive.google.com/uc?export=view&id=1U7J3vzr9xGShAuoYqSwYm10jEPjtuCqb','https://drive.google.com/uc?export=view&id=1ERZmEQyyTlUQ4wG9QmzadvY6fi7BMPBu','https://drive.google.com/uc?export=view&id=1nS8UDIkz9Wo6WCLvOwaPqTE3f2y16D_6','https://drive.google.com/uc?export=view&id=1qEcOE0GZri-KoE1rUUggUjul'],
+      sizes:[['Front (adj)','30–50.5'],['Back','66.5'],['Shoulder','16.5'],['Sleeve Length','22.5'],['Sleeve Hemline','38'],['Neckline','47'],['Chest','128'],['Hemline','131']],
+      care: careSpecial
+    },
+    {
+      id:'freyr', name:'FREYR', price:'Rp 550.000',
+      fabric:'Cotton Double Deco', special:true,
+      desc:'Short sleeve shirt. Sashiko stitch black pattern. Cotton Double Deco — thick and grounding. The sashiko-inspired stitching adds a Japanese artisan dimension to natural dye. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1SbzY_kiGQ5nz8TttYnUR8E6XdvIX9bKc','https://drive.google.com/uc?export=view&id=1jeM7IGsTbm7tLp2Oz7Cct4zz-jdWSGV','https://drive.google.com/uc?export=view&id=1QEWkN-6A0Sf08lVViKUAFxypkTb7Lo0H','https://drive.google.com/uc?export=view&id=1RuyiNIkmNHMaGe5yRL4CWfAEmPoBtlyOX'],
+      sizes:[['Front','57'],['Back','67'],['Shoulder','19'],['Sleeve Length','22'],['Sleeve Hemline','36'],['Neckline','53'],['Chest','137'],['Hemline','135.5']],
+      care: careSpecial
+    },
+    {
+      id:'gezell', name:'GEZELL', price:'Rp 600.000',
+      fabric:'Cotton Double Deco', special:true,
+      desc:'Long sleeve top with Y-neck collar. Black abstract pattern. Cotton Double Deco — substantial and expressive. Botanical contact dye creates a living landscape on every piece. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1TF_BrjbIPoxBwTRPL_Tp0eHR-b31Ut56','https://drive.google.com/uc?export=view&id=1ZuaVmB52Qs32OmV7AGhXeQukGc3nLsuQ','https://drive.google.com/uc?export=view&id=1_qq5g2nFDXBzeNzRR8V7_rkzveWrobBL'],
+      sizes:[['Front','54'],['Back','60.5'],['Shoulder','19.5'],['Sleeve Length','56'],['Sleeve Hemline','32'],['Neckline','64'],['Chest','141'],['Hemline','135']],
+      care: careSpecial
+    },
+    {
+      id:'miranda', name:'MIRANDA', price:'Rp 572.000',
+      fabric:'Cotton / Cotton Leno', special:true,
+      desc:'Long sleeve kimono top with cheongsam collar. Dark Grey Color. Available in 2 fabrics: Cotton and Cotton (Leno). A fusion of East Asian collar work and modern drape. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1gfg83IV2QtGYjWvlCpb4l76By8GFDLnU','https://drive.google.com/uc?export=view&id=17uWm86tgbaYXLABFGI50V8PnaDWrAHz-','https://drive.google.com/uc?export=view&id=1aAP0un75s5UeQ4sNDBAWg3dVvAzFzWD8','https://drive.google.com/uc?export=view&id=1lDHavD1gW5xtbXbN985cAithNg-mSPK8'],
+      sizes:[['Front','58.5'],['Back','70'],['Shoulder','27.5'],['Sleeve Length','37.5'],['Sleeve Hemline','30'],['Neckline','57.5'],['Chest','152'],['Hemline','155.5']],
+      care: careSpecial
+    },
+    {
+      id:'andie', name:'ANDIE', price:'Rp 581.000',
+      fabric:'Cotton Leno', special:true,
+      desc:'Short kimono sleeve top with pleated neckline. Dark Grey color. Cotton (Leno) fabric. The pleated neckline is a signature detail — sculptural yet wearable. All size.',
+      images:['https://drive.google.com/uc?export=view&id=1rcip9rXiarKdbevlX-og20JKWF7Qr00N','https://drive.google.com/uc?export=view&id=1SC7JInGdl578wzRZpdjC2CPHIyr4K_xx','https://drive.google.com/uc?export=view&id=1Jg1kvhc-pyL2PhIXbY636cYYTqQNlPcr','https://drive.google.com/uc?export=view&id=1mgxqUb9E_tXtFiQHQ4g4CQsCRCHLvbc4'],
+      sizes:[['Front','57.5'],['Back','64'],['Shoulder','25'],['Sleeve Length','19.5'],['Sleeve Hemline','42'],['Neckline','56.5'],['Chest','143'],['Hemline','155']],
+      care: careSpecial
+    },
+  ]
+};
+
+// ── RENDER ──
+function renderGrid(section, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  products[section].forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card reveal';
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <div class="product-img-wrap">
+        <img class="product-img" src="${p.images[0]}" alt="${p.name}" loading="lazy">
+        <span class="product-fabric-badge">${p.fabric}</span>
+        ${p.special ? '<span class="special-badge">Limited</span>' : ''}
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc-short">${p.desc.split('.')[0]}</div>
+        </div>
+        <div class="product-price">${p.price}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(p));
+    container.appendChild(card);
+  });
+}
+
+renderGrid('hemp','grid-hemp');
+renderGrid('tencel','grid-tencel');
+renderGrid('cotton','grid-cotton');
+renderGrid('satin','grid-satin');
+renderGrid('special','grid-special');
+
+// ── MODAL ──
+let currentImages = [];
+
+function openModal(p) {
+  currentImages = p.images;
+  document.getElementById('modalFabric').textContent = p.fabric.toUpperCase();
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalPrice').textContent = p.price;
+  document.getElementById('modalDesc').textContent = p.desc;
+
+  // main image
+  const mainImg = document.getElementById('modalMainImg');
+  mainImg.src = p.images[0];
+  mainImg.alt = p.name;
+
+  // thumbs
+  const thumbs = document.getElementById('modalThumbs');
+  thumbs.innerHTML = '';
+  p.images.forEach((img, i) => {
+    const t = document.createElement('img');
+    t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+    t.src = img; t.alt = p.name;
+    t.addEventListener('click', () => {
+      mainImg.src = img;
+      thumbs.querySelectorAll('.modal-thumb').forEach(el => el.classList.remove('active'));
+      t.classList.add('active');
+    });
+    thumbs.appendChild(t);
+  });
+
+  // sizes
+  const table = document.getElementById('modalSizeTable');
+  table.innerHTML = '<tr><th>Measurement</th><th>cm</th></tr>';
+  p.sizes.forEach(([key, val]) => {
+    if (key.startsWith('—')) {
+      const row = table.insertRow();
+      row.innerHTML = `<td colspan="2" style="font-style:italic;color:var(--terracotta);font-size:0.65rem;padding-top:0.6rem">${key.replace(/—/g,'')}</td>`;
+    } else {
+      const row = table.insertRow();
+      row.innerHTML = `<td>${key}</td><td>${val}</td>`;
+    }
+  });
+
+  // care
+  const care = document.getElementById('modalCare');
+  care.innerHTML = '';
+  p.care.forEach(c => {
+    const li = document.createElement('li');
+    li.textContent = c;
+    care.appendChild(li);
+  });
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Observe dynamically added cards
+const mutObs = new MutationObserver(() => {
+  document.querySelectorAll('.reveal:not([data-observed])').forEach(el => {
+    el.dataset.observed = '1';
+    observer.observe(el);
+  });
+});
+mutObs.observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>
